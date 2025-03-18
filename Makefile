@@ -5,7 +5,7 @@ SRCS_DIR = ./srcs
 LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
 
-SRC =	$(SRCS_DIR)/so_long.c
+SRC = $(SRCS_DIR)/so_long.c
 
 OBJS = $(SRC:.c=.o)
 
@@ -14,7 +14,7 @@ CFLAGS = -Wall -Werror -Wextra -g
 
 RM = rm -rf
 
-all: $(S_NAME) $(C_NAME)
+all: $(NAME) $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
