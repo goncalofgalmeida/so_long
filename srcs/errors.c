@@ -3,7 +3,9 @@
 void	handle_error_status(int status)
 {
 	printf("Error\n");
-	if (status == ERR_INVALID_FILE_EXT)
+	if (status == ERR_ARGC)
+		printf("Incorrect number of arguments, please provide only the map path.\n");
+	else if (status == ERR_INVALID_FILE_EXT)
 		printf("Invalid file extension.\n");
 	else if (status == ERR_INVALID_CHAR)
 		printf("Invalid character found.\n");

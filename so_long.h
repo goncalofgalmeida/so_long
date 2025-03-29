@@ -9,13 +9,14 @@
 # include <unistd.h>
 # include <ctype.h>
 
-#define ERR_INVALID_FILE_EXT -1
-#define ERR_INVALID_CHAR -2
-#define ERR_INVALID_MAP_PROPORTIONS -3
-#define ERR_MISSING_WALLS -4
-#define ERR_MULTIPLE_EXITS -5
-#define ERR_MULTIPLE_STARTS -6
-#define ERR_MAP_NOT_WIN -7
+#define ERR_ARGC 2
+#define ERR_INVALID_FILE_EXT 3
+#define ERR_INVALID_CHAR 4
+#define ERR_INVALID_MAP_PROPORTIONS 5
+#define ERR_MISSING_WALLS 6
+#define ERR_MULTIPLE_EXITS 7
+#define ERR_MULTIPLE_STARTS 8
+#define ERR_MAP_NOT_WIN 9
 
 // errors.c
 void	handle_error_status(int status);

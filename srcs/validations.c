@@ -6,6 +6,8 @@ int	file_ext_is_valid(char *file_name)
 	int	len;
 
 	len = ft_strlen(file_name);
+	if (len <= 4)
+		return (0);
 	if (file_name[len - 1] != 'r')
 		return (0);
 	if (file_name[len - 2] != 'e')
