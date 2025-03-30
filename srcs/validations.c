@@ -33,6 +33,7 @@ int	is_map_valid(char *file_name)
 	//char	**map;
 
 	//map = parse_map();
+	// check_file_name()
 	if (!map_content_is_valid(file_name))
 		return (0);
 	return (1);

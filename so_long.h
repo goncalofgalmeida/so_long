@@ -8,6 +8,19 @@
 # include <stdint.h>
 # include <unistd.h>
 # include <ctype.h>
+# include "./libft/libft.h"
+
+typedef struct s_game
+{
+	char	*map;
+} t_game;
+
+typedef struct s_map
+{
+	char	**matrix;
+	int		height;
+	int		width;
+} t_map;
 
 #define ERR_ARGC 2
 #define ERR_INVALID_FILE_EXT 3
