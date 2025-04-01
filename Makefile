@@ -5,7 +5,7 @@ SRCS_DIR = ./srcs
 LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
 
-SRC = $(SRCS_DIR)/so_long.c \
+SRC = ./so_long.c \
 	$(SRCS_DIR)/errors.c \
 	$(SRCS_DIR)/validations.c \
 	$(SRCS_DIR)/game.c

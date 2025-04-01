@@ -49,20 +49,20 @@ void	populate_map(t_map *map)
 	map->matrix = ft_split(file_content, '\n');
 }
 
-void start_game(t_map map)
+void start_game(t_map *map)
 {
 	int 	x;
 	int 	y;
-	create_map(&map);
-	populate_map(&map);
+	create_map(map);
+	populate_map(map);
 
 	x = 0;
-	while (x < map.height)
+	while (x < map->height)
 	{
 		y = 0;
-		while (y < map.width)
+		while (y < map->width)
 		{
-			printf("%c", map.matrix[x][y]);
+			printf("%c", map->matrix[x][y]);
 			y++;
 		}
 		printf("\n");

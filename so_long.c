@@ -1,4 +1,4 @@
-#include "../so_long.h"
+#include "./so_long.h"
 
 int	main(int argc, char **argv)
 {
@@ -16,6 +16,6 @@ int	main(int argc, char **argv)
 	map.matrix = NULL;
 	map.height = 5;
 	map.width = 8;
-	start_game(map);
+	start_game(&map);
 	return (0);
 }
