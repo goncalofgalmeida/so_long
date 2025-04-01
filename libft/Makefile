@@ -50,22 +50,29 @@ BONUS_SRCS = $(SRCS_DIR)/ft_lstadd_back.c \
 	$(SRCS_DIR)/ft_lstlast.c \
 	$(SRCS_DIR)/ft_lstmap.c \
 	$(SRCS_DIR)/ft_lstnew.c \
-	$(SRCS_DIR)/ft_lstsize.c 
+	$(SRCS_DIR)/ft_lstsize.c
+
+GNL_SRCS = ./get_next_line/get_next_line.c \
+	./get_next_line/get_next_line_utils.c \
+	./get_next_line/get_next_line_bonus.c \
+	./get_next_line/get_next_line_utils_bonus.c
 	
 OBJS = $(SRCS:.c=.o)
+
+GNL_OBJS = $(GNL_SRCS:.c=.o)
 
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(BONUS_OBJS)
-	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+$(NAME): $(OBJS) $(BONUS_OBJS) $(GNL_OBJS)
+	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS) $(GNL_OBJS)
 
-bonus: $(OBJS) $(BONUS_OBJS)
-	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+bonus: $(OBJS) $(BONUS_OBJS) $(GNL_OBJS)
+	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS) $(GNL_OBJS)
 
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS) $(BONUS_OBJS) $(GNL_OBJS)
 
 fclean: clean
 	$(RM) $(NAME)

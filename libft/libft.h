@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 10:38:46 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/02/04 16:28:11 by g24force         ###   ########.fr       */
+/*   Updated: 2025/04/01 12:34:36 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdint.h>
 # include <unistd.h>
 # include <ctype.h>
+# include "get_next_line/get_next_line.h"
 
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
