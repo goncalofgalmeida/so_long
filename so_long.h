@@ -39,4 +39,9 @@ int	file_ext_is_valid(char *file_name);
 int	map_content_is_valid(char *file_name);
 int	is_map_valid(char *file_name);
 
+// game.c
+void	create_map(t_map *map);
+void	populate_map(t_map *map_ptr);
+void 	start_game(t_map map);
+
 #endif

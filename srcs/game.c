@@ -1,66 +1,66 @@
 #include "../so_long.h"
-/* 
-11111111111111111111
-10000000000000000001
-10000000000000000001
-10000000000000000001
-11111111111111111111
-*/
 
-char **	create_map(void)
+void	create_map(t_map *map)
 {
-	char	**matrix;
-	int 	height = 5;
-	int 	width = 20;
-
-	matrix = (char **)malloc(sizeof(char *) * height);
+	map->matrix = (char **)malloc(sizeof(char *) * map->height);
 	
 	int i = 0;
-	while (i < height)
+	while (i < map->height)
 	{
-		matrix[i] = (char *)malloc(sizeof(char) * width);
+		map->matrix[i] = (char *)malloc(sizeof(char) * map->width);
 		i++;
 	}
-	return matrix;
 }
-
-// passar struct do map, para ter o conteudo, altura e largura
-void	populate_map(t_map *map_ptr)
+//perceber como fazer chegar o file path ate aqui
+char	*get_file_content(void)
 {
-	char 	**matrix = map_ptr->matrix;
-	int 	height = 5;
-	int 	width = 20;
-	int 	x;
-	int 	y;
+	int		fd;
+	char	*line;
+	char	*temp;
+	char	*file_content;
 
-	x = 0;
-	while (x < height)
+	fd = open("./test.ber", O_RDONLY);
+	if (fd < 0)
+		return NULL;
+	file_content = NULL;
+	line = get_next_line(fd);
+	while (line)
 	{
-		y = 0;
-		while (y < width)
+		if (!file_content)
+			file_content = ft_strdup(line);
+		else
 		{
-			matrix[x][y] = '1';
-			y++;
+			temp = ft_strjoin(file_content, line);
+			free(file_content);
+			file_content = temp;
 		}
-		x++;
+		free(line);
+		line = get_next_line(fd);
 	}
-	
+	close(fd);
+	return (file_content);
 }
 
-int main(void)
+void	populate_map(t_map *map)
 {
-	t_map map;
+	char	*file_content;
 
-	map.matrix = create_map();
-	populate_map(&map);
+	file_content = get_file_content();
+	map->matrix = ft_split(file_content, '\n');
+}
+
+void start_game(t_map map)
+{
 	int 	x;
 	int 	y;
+	create_map(&map);
+	populate_map(&map);
 
 	x = 0;
-	while (x < 5)
+	while (x < map.height)
 	{
 		y = 0;
-		while (y < 20)
+		while (y < map.width)
 		{
 			printf("%c", map.matrix[x][y]);
 			y++;
@@ -68,6 +68,4 @@ int main(void)
 		printf("\n");
 		x++;
 	}
-
-	return 0;
 }

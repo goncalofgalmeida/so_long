@@ -2,7 +2,8 @@
 
 int	main(int argc, char **argv)
 {
-	t_game	game;
+	/* t_game	game; */
+	t_map	map;
 	int		status;
 
 	if (argc != 2)
@@ -12,9 +13,9 @@ int	main(int argc, char **argv)
 	status = is_map_valid(argv[1]); // chamar aqui a funcao file_ext_is_valid(argv[1])
 	if (status != 1)
 		return (handle_error_status(status), status); // dar free ao mapa que já foi alocado?
-	if (!init_game(&game))
-		return (handle_error_status(ERR_INIT_FAIL), free_game(&game), ERR_INIT_FAIL);
-	start_game(&game);
-	free_game(&game);
+	map.matrix = NULL;
+	map.height = 5;
+	map.width = 8;
+	start_game(map);
 	return (0);
 }

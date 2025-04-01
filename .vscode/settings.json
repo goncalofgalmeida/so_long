@@ -4,6 +4,7 @@
 		"so_long.h": "c",
 		"ctype.h": "c",
 		"map": "c",
-		"format": "c"
+		"format": "c",
+		"get_next_line.h": "c"
 	}
 }
