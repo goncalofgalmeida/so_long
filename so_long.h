@@ -15,11 +15,18 @@ typedef struct s_game
 	char	*map;
 } t_game;
 
+typedef struct s_player
+{
+	int		x_coord;
+	int		y_coord;
+} t_player;
+
 typedef struct s_map
 {
-	char	**matrix;
-	int		height;
-	int		width;
+	char		**matrix;
+	int			height;
+	int			width;
+	t_player 	p_coords;
 } t_map;
 
 #define ERR_ARGC 2
@@ -43,5 +50,8 @@ int	is_map_valid(char *file_name);
 void	create_map(t_map *map);
 void	populate_map(t_map *map_ptr);
 void 	start_game(t_map *map);
+
+// player.c
+void	move_right(t_map *map);
 
 #endif
