@@ -8,7 +8,8 @@ LIBFT_DIR = ./libft
 SRC = ./so_long.c \
 	$(SRCS_DIR)/errors.c \
 	$(SRCS_DIR)/validations.c \
-	$(SRCS_DIR)/game.c
+	$(SRCS_DIR)/game.c \
+	$(SRCS_DIR)/init.c
 
 OBJS = $(SRC:.c=.o)
 

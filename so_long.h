@@ -6,7 +6,7 @@
 /*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/04/02 13:44:42 by gjose-fr         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:07:19 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,11 @@ int		is_map_valid(char *file_name);
 
 // game.c
 void	create_map(t_map *map);
-void	populate_map(t_map *map_ptr);
-void	start_game(t_map *map);
+void	populate_map(t_map *map_ptr, char *file_path);
+void	start_game(t_map *map, char *file_path);
+
+// init.c
+void	init_map(t_map *map);
 
 // player.c
 void	move_right(t_map *map);
