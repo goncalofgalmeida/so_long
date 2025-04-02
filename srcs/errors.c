@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errors.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/02 13:39:41 by gjose-fr          #+#    #+#             */
+/*   Updated: 2025/04/02 13:40:42 by gjose-fr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
 void	handle_error_status(int status)
 {
 	printf("Error\n");
 	if (status == ERR_ARGC)
-		printf("Incorrect number of arguments, please provide only the map path.\n");
-	else if (status == ERR_INVALID_FILE_EXT)
+		printf("Usage: ./so_long path/to/map.ber\n");
+	else if (status == ERR_INVALID_EXT)
 		printf("Invalid file extension.\n");
 	else if (status == ERR_INVALID_CHAR)
 		printf("Invalid character found.\n");
