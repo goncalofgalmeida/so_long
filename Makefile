@@ -10,7 +10,8 @@ SRC = ./so_long.c \
 	$(SRCS_DIR)/validations.c \
 	$(SRCS_DIR)/parsing_utils.c \
 	$(SRCS_DIR)/game.c \
-	$(SRCS_DIR)/init.c
+	$(SRCS_DIR)/init.c \
+	$(SRCS_DIR)/player.c
 
 OBJS = $(SRC:.c=.o)
 

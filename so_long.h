@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/04/02 17:32:27 by gjose-fr         ###   ########.fr       */
+/*   Updated: 2025/04/09 11:31:37 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_map
 	char		**matrix;
 	int			height;
 	int			width;
-	t_player	*p_coords;
+	t_player	*player;
 }	t_map;
 
 // errors.c
@@ -71,5 +71,8 @@ void	init_map(t_map *map);
 
 // player.c
 void	move_right(t_map *map);
+void	move_down(t_map *map);
+void	move_left(t_map *map);
+void	move_up(t_map *map);
 
 #endif

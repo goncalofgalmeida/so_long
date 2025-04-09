@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:35:51 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/04/02 17:22:29 by gjose-fr         ###   ########.fr       */
+/*   Updated: 2025/04/09 11:30:23 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,21 @@ void	print_map(t_map map)
 
 void	start_game(t_map *map, char *file_path)
 {
+	// arranjar maneira de ver a posicão de 'p' na matriz e guardar as coords em t_player
+	map->player->x_coord = 1;
+	map->player->y_coord = 1;
 	get_and_set_map(map, file_path);
+	print_map(*map);
+	move_right(map);
+	printf("\n");
+	print_map(*map);
+	move_down(map);
+	printf("\n");
+	print_map(*map);
+	move_left(map);
+	printf("\n");
+	print_map(*map);
+	move_up(map);
+	printf("\n");
 	print_map(*map);
 }
