@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/04/09 11:31:37 by g24force         ###   ########.fr       */
+/*   Updated: 2025/04/09 12:44:42 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_map
 }	t_map;
 
 // errors.c
-void	handle_error_status(int status);
+int	handle_error_status(int status);
 
 // validations.c
 int		file_ext_is_valid(char *file_name);
