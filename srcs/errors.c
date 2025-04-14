@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:39:41 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/04/09 15:27:48 by g24force         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:08:04 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 int	handle_error_status(int status)
 {
-	printf("Error!\n");
+	printf("Error! ");
 	if (status == ERR_ARGC)
 		printf("Usage: ./so_long path/to/map.ber\n");
 	else if (status == ERR_INVALID_EXT)
 		printf("Invalid file extension.\n");
+	else if (status == ERR_OPENING_FILE)
+		printf("Error opening file.\n");
 	else if (status == ERR_INVALID_CHAR)
 		printf("Invalid character found.\n");
 	else if (status == ERR_INVALID_MAP_PROPORTIONS)
@@ -33,6 +35,6 @@ int	handle_error_status(int status)
 		printf("Map is not winnable.\n");
 	else
 		printf("Undefined error, must look into it.\n");
-	free_all(); // criar função para dar free a tudo
+	//free_all(); // criar função para dar free a tudo
 	return (status);
 }

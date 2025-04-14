@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/04/09 15:29:55 by g24force         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:08:43 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,14 @@
 
 # define ERR_ARGC 2
 # define ERR_INVALID_EXT 3
-# define ERR_INVALID_CHAR 4
-# define ERR_INVALID_MAP_PROPORTIONS 5
-# define ERR_MISSING_WALLS 6
-# define ERR_MULTIPLE_EXITS 7
-# define ERR_MULTIPLE_STARTS 8
-# define ERR_MAP_NOT_WIN 9
-
-typedef struct s_game
-{
-	char	*map;
-}	t_game;
+# define ERR_OPENING_FILE 4
+# define ERR_INVALID_CHAR 5
+# define ERR_INVALID_MAP_PROPORTIONS 6
+# define ERR_MISSING_WALLS 7
+# define ERR_MULTIPLE_EXITS 8
+# define ERR_MULTIPLE_STARTS 9
+# define ERR_MAP_NOT_WIN 10
+# define ERR_NO_COLLECTIBLES 11
 
 typedef struct s_player
 {
@@ -45,24 +42,35 @@ typedef struct s_player
 typedef struct s_map
 {
 	char		**matrix;
+	char		**flood;
 	int			height;
 	int			width;
+	int			player_count;
+	int			collectibles_count;
+	int			exit_count;
 	t_player	*player;
 }	t_map;
+
+typedef struct s_game
+{
+	char	*map;
+}	t_game;
 
 // errors.c
 int		handle_error_status(int status);
 
 // validations.c
 int		file_ext_is_valid(char *file_name);
-int		map_content_is_valid(char *file_name);
-int		is_map_valid(char *file_name);
+int		map_content_is_valid(char *file_content);
+int		check_map(char *file_name);
 
 // parsing_utils.c
 int		get_map_height(char *file_content);
 int		get_map_width(char *file_content);
+void	get_and_set_player_coords(t_map *map);
 
 // game.c
+char	*get_file_content(char *file_path);
 void	get_and_set_map(t_map *map_ptr, char *file_path);
 void	start_game(t_map *map, char *file_path);
 

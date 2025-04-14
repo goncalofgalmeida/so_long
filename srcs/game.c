@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:35:51 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/04/09 15:24:55 by g24force         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:08:50 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	get_and_set_map(t_map *map, char *file_path)
 	char	*file_content;
 
 	file_content = get_file_content(file_path);
+	if (!file_content)
+		handle_error_status(ERR_INVALID_MAP_PROPORTIONS);
 	map->height = get_map_height(file_content);
 	map->width = get_map_width(file_content);
 	map->matrix = ft_split(file_content, '\n');
@@ -72,9 +74,7 @@ void	print_map(t_map map)
 
 void	start_game(t_map *map, char *file_path)
 {
-	// arranjar maneira de ver a posicão de 'p' na matriz e guardar as coords em t_player
-	map->player->x_coord = 1;
-	map->player->y_coord = 1;
 	get_and_set_map(map, file_path);
+	get_and_set_player_coords(map);
 	print_map(*map);
 }
