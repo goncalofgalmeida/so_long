@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/04/11 17:08:43 by g24force         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:03:27 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <ctype.h>
 # include "./libft/libft.h"
+# include <mlx.h>
 
 # define ERR_ARGC 2
 # define ERR_INVALID_EXT 3

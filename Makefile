@@ -21,11 +21,15 @@ CFLAGS = -Wall -Werror -Wextra -g
 RM = rm -rf
 
 # Confirmar importância desta rule: faz com que qualquer verificação no so_long.h se verifique após a compilação
-## %.o: %.c [...] 
+## %.o: %.c [...]
+
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)

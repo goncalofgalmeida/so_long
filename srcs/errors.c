@@ -6,11 +6,11 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:39:41 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/04/11 17:08:04 by g24force         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:02:38 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long.h" 
 
 int	handle_error_status(int status)
 {
