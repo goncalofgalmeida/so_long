@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:27:49 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/04/11 17:05:08 by g24force         ###   ########.fr       */
+/*   Updated: 2025/05/23 10:05:15 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	get_and_set_player_coords(t_map *map)
 		{
 			if (map->matrix[x][y] == 'P')
 			{
-				map->player->x_coord = x;
-				map->player->y_coord = y;
+				map->player.x_coord = x;
+				map->player.y_coord = y;
 				printf("Player coordinates: (%d, %d)\n", x, y);
 			}
 			y++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/20 16:41:02 by gjose-fr         ###   ########.fr       */
+/*   Updated: 2025/05/23 09:54:15 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@
 # include <unistd.h>
 # include <ctype.h>
 # include "./libft/libft.h"
-# include "./mlx_linux/mlx.h"
+# include "./mlx/mlx.h"
 
+
+// mudar para enum
 # define ERR_ARGC 2
 # define ERR_INVALID_EXT 3
 # define ERR_OPENING_FILE 4
@@ -36,8 +38,9 @@
 
 typedef struct s_player
 {
-	int		x_coord;
-	int		y_coord;
+	int	x_coord;
+	int	y_coord;
+	int	move_count;	
 }	t_player;
 
 typedef struct s_map
@@ -49,12 +52,19 @@ typedef struct s_map
 	int			player_count;
 	int			collectibles_count;
 	int			exit_count;
-	t_player	*player;
+	t_player	player;
 }	t_map;
+
+typedef struct s_data
+{
+	void	*init;
+	void	*window;
+}	t_data;
 
 typedef struct s_game
 {
-	char	*map;
+	t_map	map;
+	t_data	mlx;
 }	t_game;
 
 // errors.c
