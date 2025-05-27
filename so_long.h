@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/23 09:54:15 by g24force         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:26:30 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define ERR_OPENING_FILE 4
 # define ERR_INVALID_CHAR 5
 # define ERR_INVALID_MAP_PROPORTIONS 6
-# define ERR_MISSING_WALLS 7
+# define ERR_MISSING_WALL 7
 # define ERR_MULTIPLE_EXITS 8
 # define ERR_MULTIPLE_STARTS 9
 # define ERR_MAP_NOT_WIN 10
@@ -59,6 +59,7 @@ typedef struct s_data
 {
 	void	*init;
 	void	*window;
+	void	*textures[5];
 }	t_data;
 
 typedef struct s_game
@@ -73,12 +74,16 @@ int		handle_error_status(int status);
 // validations.c
 int		file_ext_is_valid(char *file_name);
 int		map_content_is_valid(char *file_content);
-int		check_map(char *file_name);
+void	parse_map(t_map *map);
 
 // parsing_utils.c
 int		get_map_height(char *file_content);
 int		get_map_width(char *file_content);
 void	get_and_set_player_coords(t_map *map);
+void	get_and_set_chars_count(t_map *map, char *file_content);
+int		is_rectangular(t_map *map);
+int		is_surrounded_by_walls(t_map *map);
+void	print_map(t_map map); // delete
 
 // game.c
 char	*get_file_content(char *file_path);

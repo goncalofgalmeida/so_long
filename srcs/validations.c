@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:38:25 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/04/11 16:46:13 by g24force         ###   ########.fr       */
+/*   Updated: 2025/05/23 20:27:11 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,18 @@ void check_chars_count(t_map *map)
 		handle_error_status(ERR_NO_COLLECTIBLES);
 }
 
-int	check_map(char *file_name)
+//acho que posso passar aqui o mapa direto, não pointer
+void	parse_map(t_map *map)
 {
-	char	*file_content;
-
-	file_content = get_file_content(file_name);
-	if (!map_content_is_valid(file_content))
-	{
-		free(file_content);
-		return (ERR_INVALID_CHAR);
-	}
-	free(file_content);
-	return (1);
+	if (!is_rectangular(map))
+		handle_error_status(ERR_INVALID_MAP_PROPORTIONS);
+	if (!is_surrounded_by_walls(map))
+		handle_error_status(ERR_MISSING_WALL);
+	if (map->player_count != 1)
+		handle_error_status(ERR_MULTIPLE_STARTS);
+	if (map->exit_count != 1)
+		handle_error_status(ERR_MULTIPLE_EXITS);
+	if (map->collectibles_count <= 0)
+		handle_error_status(ERR_NO_COLLECTIBLES);
+	// check if map is winnable 
 }

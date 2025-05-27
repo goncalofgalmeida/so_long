@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:39:41 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/04/22 11:02:38 by g24force         ###   ########.fr       */
+/*   Updated: 2025/05/27 11:59:04 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,18 @@ int	handle_error_status(int status)
 		printf("Invalid character found.\n");
 	else if (status == ERR_INVALID_MAP_PROPORTIONS)
 		printf("Map is not a rectangle.\n");
-	else if (status == ERR_MISSING_WALLS)
+	else if (status == ERR_MISSING_WALL)
 		printf("Map is not surrounded by walls.\n");
 	else if (status == ERR_MULTIPLE_EXITS)
 		printf("Map has multiple exits.\n");
 	else if (status == ERR_MULTIPLE_STARTS)
 		printf("Map has multiple starts.\n");
+	else if (status == ERR_NO_COLLECTIBLES)
+		printf("No collectibles found\n");
 	else if (status == ERR_MAP_NOT_WIN)
 		printf("Map is not winnable.\n");
 	else
 		printf("Undefined error, must look into it.\n");
 	//free_all(); // criar função para dar free a tudo
-	return (status);
+	exit (status);
 }

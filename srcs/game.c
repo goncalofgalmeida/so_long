@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:35:51 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/04/11 17:08:50 by g24force         ###   ########.fr       */
+/*   Updated: 2025/05/27 11:53:07 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,34 +47,19 @@ void	get_and_set_map(t_map *map, char *file_path)
 
 	file_content = get_file_content(file_path);
 	if (!file_content)
-		handle_error_status(ERR_INVALID_MAP_PROPORTIONS);
+		handle_error_status(67); // error reading file, change code later
+	if (!map_content_is_valid(file_content))
+		handle_error_status(ERR_INVALID_CHAR);
 	map->height = get_map_height(file_content);
 	map->width = get_map_width(file_content);
 	map->matrix = ft_split(file_content, '\n');
-}
-
-void	print_map(t_map map)
-{
-	int		x;
-	int		y;
-
-	x = 0;
-	while (x < map.height)
-	{
-		y = 0;
-		while (y < map.width)
-		{
-			printf("%c", map.matrix[x][y]);
-			y++;
-		}
-		printf("\n");
-		x++;
-	}
+	get_and_set_chars_count(map, file_content);
 }
 
 void	start_game(t_map *map, char *file_path)
 {
 	get_and_set_map(map, file_path);
+	parse_map(map);
 	get_and_set_player_coords(map);
 	print_map(*map);
 }
