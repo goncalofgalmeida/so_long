@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:27:49 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/27 11:46:17 by g24force         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:12:43 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,24 @@ int	get_map_width(char *file_content)
 
 void	get_and_set_player_coords(t_map *map)
 {
-	int	x;
 	int	y;
+	int	x;
 
-	x = 0;
-	while (map->matrix[x])
+	y = 0;
+	while (map->matrix[y])
 	{
-		y = 0;
-		while (map->matrix[x][y])
+		x = 0;
+		while (map->matrix[y][x])
 		{
-			if (map->matrix[x][y] == 'P')
+			if (map->matrix[y][x] == 'P')
 			{
-				map->player.x_coord = x;
 				map->player.y_coord = y;
-				printf("Player coordinates: (%d, %d)\n", x, y); // delete
+				map->player.x_coord = x;
+				printf("Player coordinates: (%d, %d)\n", y, x); // delete
 			}
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 }
 
@@ -104,22 +104,22 @@ int	is_rectangular(t_map *map) {
 
 int	is_surrounded_by_walls(t_map *map)
 {
-	int		x;
 	int		y;
+	int		x;
 
-	y = 0;
-	while (map->matrix[0][y])
-	{
-		if (map->matrix[0][y] != '1' || map->matrix[map->height - 1][y] != '1')
-			return (0);
-		y++;
-	}
 	x = 0;
-	while (x < map->height) //map->matrix[x][0]
+	while (map->matrix[0][x])
 	{
-		if (map->matrix[x][0] != '1' || map->matrix[x][map->width - 1] != '1')
+		if (map->matrix[0][x] != '1' || map->matrix[map->height - 1][x] != '1')
 			return (0);
 		x++;
+	}
+	y = 0;
+	while (y < map->height) //map->matrix[x][0]
+	{
+		if (map->matrix[y][0] != '1' || map->matrix[y][map->width - 1] != '1')
+			return (0);
+		y++;
 	}
 	return (1);
 }
@@ -127,19 +127,19 @@ int	is_surrounded_by_walls(t_map *map)
 // delete
 void	print_map(t_map map)
 {
-	int		x;
 	int		y;
+	int		x;
 
-	x = 0;
-	while (x < map.height)
+	y = 0;
+	while (y < map.height)
 	{
-		y = 0;
-		while (y < map.width)
+		x = 0;
+		while (x < map.width)
 		{
-			printf("%c", map.matrix[x][y]);
-			y++;
+			printf("%c", map.matrix[y][x]);
+			x++;
 		}
 		printf("\n");
-		x++;
+		y++;
 	}
 }

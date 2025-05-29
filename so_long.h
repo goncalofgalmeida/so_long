@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/27 13:26:30 by g24force         ###   ########.fr       */
+/*   Updated: 2025/05/29 09:38:54 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,25 @@
 # define ERR_MAP_NOT_WIN 10
 # define ERR_NO_COLLECTIBLES 11
 
+// mlx related
+# define TILE_SIZE 64
+
+// mlx sprites paths
+# define GRASS_PATH "textures/environment/grass-1.xpm"
+# define TREE_PATH "textures/environment/tree.xpm"
+# define GRASS2_PATH "textures/environment/grass-2.xpm" // use or delete
+# define COL1_PATH "textures/collectibles/collectible-1.xpm"
+# define COL2_PATH "textures/collectibles/collectible-2.xpm" // use or delete
+# define PLAYER_PATH "textures/characters/dog.xpm"
+
+typedef struct s_sprites
+{
+	void	*player;
+	void	*collectible;
+	void	*wall;
+	void	*grass;
+}	t_sprites;
+
 typedef struct s_player
 {
 	int	x_coord;
@@ -57,9 +76,9 @@ typedef struct s_map
 
 typedef struct s_data
 {
-	void	*init;
-	void	*window;
-	void	*textures[5];
+	void		*init;
+	void		*window;
+	t_sprites	sprites;
 }	t_data;
 
 typedef struct s_game
@@ -92,6 +111,10 @@ void	start_game(t_map *map, char *file_path);
 
 // init.c
 void	init_map(t_map *map);
+
+// rendering.c
+void	load_images(t_game *game);
+void	render_map(t_game *game);
 
 // player.c
 void	move_right(t_map *map);
