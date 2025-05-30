@@ -13,6 +13,7 @@ SRC = ./so_long.c \
 	$(SRCS_DIR)/init.c \
 	$(SRCS_DIR)/rendering.c \
 	$(SRCS_DIR)/movement.c \
+	$(SRCS_DIR)/handling.c \
 	$(SRCS_DIR)/free.c
 
 OBJS = $(SRC:.c=.o)

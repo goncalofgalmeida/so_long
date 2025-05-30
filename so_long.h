@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/30 01:16:52 by g24force         ###   ########.fr       */
+/*   Updated: 2025/05/30 13:44:54 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,13 +128,16 @@ void	load_images(t_game *game);
 void	render_map(t_game *game);
 
 // movement.c
+void	print_move_count(t_game game);
+int	move_right(t_map *map);
+int	move_down(t_map *map);
+int	move_left(t_map *map);
+int	move_up(t_map *map);
+
+// handling.c
 int		handle_keypress(int keycode, t_game *game);
-void	move_right(t_map *map);
-void	move_down(t_map *map);
-void	move_left(t_map *map);
-void	move_up(t_map *map);
+int		handle_close_game(t_game *game);
 
 //free.c
-int		handle_close_game(t_game *game);
 
 #endif

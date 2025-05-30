@@ -6,73 +6,67 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:45:15 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/30 01:25:36 by g24force         ###   ########.fr       */
+/*   Updated: 2025/05/30 13:42:57 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "../so_long.h"
 
-int		handle_keypress(int keycode, t_game *game) // mover para novo handle_keys.c ?
+void	print_move_count(t_game game)
 {
-	if (keycode == KEY_W)
-		move_up(&game->map);
-	else if (keycode == KEY_D)
-		move_right(&game->map);
-	else if (keycode == KEY_S)
-		move_down(&game->map);
-	else if (keycode == KEY_A)
-		move_left(&game->map);
-	else if (keycode == KEY_ESC)
-		handle_close_game(game);
-	render_map(game);
-	return (0);
+	ft_putstr_fd("Current move count: ", 1);
+	ft_putnbr_fd(game.map.player.move_count, 1);
+	ft_putchar_fd('\n', 1);
 }
 
-void	move_right(t_map *map)
+int	move_right(t_map *map)
 {
 	t_player	*player;
 
 	player = &map->player;
 	if (map->matrix[player->y_coord][player->x_coord + 1] == '1')
-		return;
+		return (0);
 	map->matrix[player->y_coord][player->x_coord] = '0';
 	player->x_coord += 1;
 	map->matrix[player->y_coord][player->x_coord] = 'P';
+	return (1);
 }
 
-void	move_down(t_map *map)
+int	move_down(t_map *map)
 {
 	t_player	*player;
 
 	player = &map->player;
 	if (map->matrix[player->y_coord + 1][player->x_coord] == '1')
-		return;
+		return (0);
 	map->matrix[player->y_coord][player->x_coord] = '0';
 	player->y_coord += 1;
 	map->matrix[player->y_coord][player->x_coord] = 'P';
+	return (1);
 }
 
-void	move_left(t_map *map)
+int	move_left(t_map *map)
 {
 	t_player	*player;
 
 	player = &map->player;
 	if (map->matrix[player->y_coord][player->x_coord - 1] == '1')
-		return;
+		return (0);
 	map->matrix[player->y_coord][player->x_coord] = '0';
 	player->x_coord -= 1;
 	map->matrix[player->y_coord][player->x_coord] = 'P';
+	return (1);
 }
 
-void	move_up(t_map *map)
+int	move_up(t_map *map)
 {
 	t_player	*player;
 
 	player = &map->player;
 	if (map->matrix[player->y_coord - 1][player->x_coord] == '1')
-		return;
+		return (0);
 	map->matrix[player->y_coord][player->x_coord] = '0';
 	player->y_coord -= 1;
 	map->matrix[player->y_coord][player->x_coord] = 'P';
+	return (1);
 }
