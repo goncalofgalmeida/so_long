@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/29 09:38:54 by g24force         ###   ########.fr       */
+/*   Updated: 2025/05/30 01:16:52 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,21 @@
 // mlx sprites paths
 # define GRASS_PATH "textures/environment/grass-1.xpm"
 # define TREE_PATH "textures/environment/tree.xpm"
-# define GRASS2_PATH "textures/environment/grass-2.xpm" // use or delete
 # define COL1_PATH "textures/collectibles/collectible-1.xpm"
-# define COL2_PATH "textures/collectibles/collectible-2.xpm" // use or delete
 # define PLAYER_PATH "textures/characters/dog.xpm"
+
+// mlx events and masks
+# define EVENT_KEY_PRESS 2
+# define MASK_KEY_PRESS (1L << 0)
+# define EVENT_CLOSE_WINDOW 17
+# define MASK_CLOSE_WINDOW (1L << 17)
+
+// mlx key codes
+# define KEY_W 119
+# define KEY_D 100
+# define KEY_S 115
+# define KEY_A 97
+# define KEY_ESC 65307
 
 typedef struct s_sprites
 {
@@ -116,10 +127,14 @@ void	init_map(t_map *map);
 void	load_images(t_game *game);
 void	render_map(t_game *game);
 
-// player.c
+// movement.c
+int		handle_keypress(int keycode, t_game *game);
 void	move_right(t_map *map);
 void	move_down(t_map *map);
 void	move_left(t_map *map);
 void	move_up(t_map *map);
+
+//free.c
+int		handle_close_game(t_game *game);
 
 #endif

@@ -12,7 +12,8 @@ SRC = ./so_long.c \
 	$(SRCS_DIR)/game.c \
 	$(SRCS_DIR)/init.c \
 	$(SRCS_DIR)/rendering.c \
-	$(SRCS_DIR)/player.c
+	$(SRCS_DIR)/movement.c \
+	$(SRCS_DIR)/free.c
 
 OBJS = $(SRC:.c=.o)
 

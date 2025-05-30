@@ -6,13 +6,23 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:32:28 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/28 16:29:59 by g24force         ###   ########.fr       */
+/*   Updated: 2025/05/30 01:23:39 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./so_long.h"
 
-int	main(int argc, char **argv)
+void	hooks_and_loop(t_game *game)
+{
+	void		*window;
+
+	window = game->mlx.window;
+	mlx_hook(window, EVENT_KEY_PRESS, MASK_KEY_PRESS, handle_keypress, game); // check if last NULL
+	mlx_hook(window, EVENT_CLOSE_WINDOW, MASK_CLOSE_WINDOW, handle_close_game, game); // check if last NULL
+	mlx_loop(game->mlx.init);
+}
+
+int		main(int argc, char **argv)
 {
 	t_game	game;
 
@@ -33,6 +43,6 @@ int	main(int argc, char **argv)
 		return (1);
 	load_images(&game);
 	render_map(&game);
-	mlx_loop(game.mlx.init);
+	hooks_and_loop(&game);
 	return (0);
 }

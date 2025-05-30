@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:07:10 by g24force          #+#    #+#             */
-/*   Updated: 2025/05/29 17:49:36 by g24force         ###   ########.fr       */
+/*   Updated: 2025/05/29 20:42:08 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	render_sprite(t_game *game, char cell_value, int x, int y)
 		mlx_put_image_to_window(mlx->init, window, sprites.collectible, x * TILE_SIZE, y * TILE_SIZE);
 	else if (cell_value == 'E')
 		mlx_put_image_to_window(mlx->init, window, sprites.grass, x * TILE_SIZE, y * TILE_SIZE);
-	
 }
 
 void	render_map(t_game *game)
@@ -56,14 +55,12 @@ void	render_map(t_game *game)
 	int		y;
 	int		x;
 
-	// chamar load_images(game) aqui ?
 	y = 0;
 	while (y < game->map.height)
 	{
 		x = 0;
 		while (x < game->map.width)
 		{
-			//mlx_put_image_to_window(mlx->init, mlx->window, mlx->sprites.grass, x * TILE_SIZE, y * TILE_SIZE);
 			render_sprite(game, game->map.matrix[y][x], x, y);
 			x++;
 		}
