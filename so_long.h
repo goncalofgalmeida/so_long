@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/30 13:44:54 by g24force         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:57:34 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,19 @@
 # include "./libft/libft.h"
 # include "./mlx/mlx.h"
 
-
-// mudar para enum
-# define ERR_ARGC 2
-# define ERR_INVALID_EXT 3
-# define ERR_OPENING_FILE 4
-# define ERR_INVALID_CHAR 5
-# define ERR_INVALID_MAP_PROPORTIONS 6
-# define ERR_MISSING_WALL 7
-# define ERR_MULTIPLE_EXITS 8
-# define ERR_MULTIPLE_STARTS 9
-# define ERR_MAP_NOT_WIN 10
-# define ERR_NO_COLLECTIBLES 11
+typedef enum e_error_codes
+{
+	ERR_ARGC = 2,
+	ERR_INVALID_EXT,
+	ERR_OPENING_FILE,
+	ERR_INVALID_CHAR,
+	ERR_INVALID_MAP_PROPORTIONS,
+	ERR_MISSING_WALL,
+	ERR_MULTIPLE_EXITS,
+	ERR_MULTIPLE_STARTS,
+	ERR_MAP_NOT_WIN,
+	ERR_NO_COLLECTIBLES,
+}	t_error_codes;
 
 // mlx related
 # define TILE_SIZE 64
