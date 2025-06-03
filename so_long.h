@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/03 17:30:45 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/03 23:41:17 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ typedef enum e_error_codes
 # define TILE_SIZE 64
 
 // mlx sprites paths
-# define GRASS_PATH "textures/environment/grass-1.xpm"
-# define TREE_PATH "textures/environment/tree.xpm"
-# define COL1_PATH "textures/collectibles/collectible-1.xpm"
-# define PLAYER_PATH "textures/characters/dog.xpm"
+# define BG_PATH "textures/environment/bg.xpm"
+# define WALL_PATH "textures/environment/asteroid-01.xpm"
+# define EXIT_PATH "textures/environment/portal.xpm"
+# define COL_PATH "textures/collectibles/collectible.xpm"
+# define PLAYER_PATH "textures/characters/p-red-up.xpm"
 
 // mlx events and masks
 # define EVENT_KEY_PRESS 2
@@ -61,10 +62,11 @@ typedef enum e_error_codes
 
 typedef struct s_sprites
 {
-	void	*player;
-	void	*collectible;
+	void	*floor;
 	void	*wall;
-	void	*grass;
+	void	*exit;
+	void	*collectible;
+	void	*player;
 }	t_sprites;
 
 typedef struct s_player
