@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:27:49 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/28 16:12:43 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/03 18:19:14 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void	print_map(t_map map)
 	int		y;
 	int		x;
 
+	printf("Map:\n");
 	y = 0;
 	while (y < map.height)
 	{
@@ -142,4 +143,27 @@ void	print_map(t_map map)
 		printf("\n");
 		y++;
 	}
+	printf("\n");
+}
+
+// delete
+void	print_flood(t_map map)
+{
+	int		y;
+	int		x;
+
+	printf("Flooded map:\n");
+	y = 0;
+	while (y < map.height)
+	{
+		x = 0;
+		while (x < map.width)
+		{
+			printf("%c", map.flood[y][x]);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
+	printf("\n");
 }

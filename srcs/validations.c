@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:38:25 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/23 20:27:11 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/03 18:20:10 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,44 @@ void check_chars_count(t_map *map)
 		handle_error_status(ERR_NO_COLLECTIBLES);
 }
 
+void	flood_fill(char **flood, int y, int x)
+{
+	if (y < 0 || x < 0 || flood[y][x] == '1' || flood[y][x] == 'F'
+		|| flood[y][x] == 'e')
+		return ;
+	if (flood[y][x] == 'E')
+	{
+		flood[y][x] = 'e';
+		return ;
+	}
+	flood[y][x] = 'F';
+	flood_fill(flood, y + 1, x);
+	flood_fill(flood, y - 1, x);
+	flood_fill(flood, y, x + 1);
+	flood_fill(flood, y, x - 1);
+}
+
+int	is_winnable(char **flood)
+{
+	int	y;
+	int	x;
+
+
+	y = 0;
+	while (flood[y])
+	{
+		x = 0;
+		while (flood[y][x])
+		{
+			if (flood[y][x] == 'C' || flood[y][x] == 'E')
+				return (0);
+			x++;
+		}
+		y++;
+	}
+	return (1);
+}
+
 //acho que posso passar aqui o mapa direto, não pointer
 void	parse_map(t_map *map)
 {
@@ -68,5 +106,9 @@ void	parse_map(t_map *map)
 		handle_error_status(ERR_MULTIPLE_EXITS);
 	if (map->collectibles_count <= 0)
 		handle_error_status(ERR_NO_COLLECTIBLES);
-	// check if map is winnable 
+	flood_fill(map->flood, map->player.y_coord, map->player.x_coord);
+	print_map(*map); // delete
+	print_flood(*map); // delete
+	if (!is_winnable(map->flood))
+		handle_error_status(ERR_MAP_NOT_WIN);
 }

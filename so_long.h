@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/31 12:57:34 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/03 17:30:45 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef enum e_error_codes
 	ERR_MISSING_WALL,
 	ERR_MULTIPLE_EXITS,
 	ERR_MULTIPLE_STARTS,
-	ERR_MAP_NOT_WIN,
 	ERR_NO_COLLECTIBLES,
+	ERR_MAP_NOT_WIN,
 }	t_error_codes;
 
 // mlx related
@@ -105,6 +105,7 @@ int		handle_error_status(int status);
 // validations.c
 int		file_ext_is_valid(char *file_name);
 int		map_content_is_valid(char *file_content);
+int		is_winnable(char **flood);
 void	parse_map(t_map *map);
 
 // parsing_utils.c
@@ -115,6 +116,7 @@ void	get_and_set_chars_count(t_map *map, char *file_content);
 int		is_rectangular(t_map *map);
 int		is_surrounded_by_walls(t_map *map);
 void	print_map(t_map map); // delete
+void	print_flood(t_map map); // delete
 
 // game.c
 char	*get_file_content(char *file_path);
@@ -122,7 +124,7 @@ void	get_and_set_map(t_map *map_ptr, char *file_path);
 void	start_game(t_map *map, char *file_path);
 
 // init.c
-void	init_map(t_map *map);
+void	init_maps(t_map *map);
 
 // rendering.c
 void	load_images(t_game *game);

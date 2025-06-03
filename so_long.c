@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:32:28 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/30 01:23:39 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/03 17:49:56 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		main(int argc, char **argv)
 	game.mlx.init = mlx_init();
 	if (!game.mlx.init)
 		return (1);
-	init_map(&game.map);
+	init_maps(&game.map);
 	start_game(&game.map, argv[1]);
 	game.mlx.window = mlx_new_window(game.mlx.init,
 		game.map.width * TILE_SIZE,
