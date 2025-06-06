@@ -6,12 +6,13 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 13:27:10 by g24force          #+#    #+#             */
-/*   Updated: 2025/05/30 13:43:57 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/06 22:42:49 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+// allow movement for upper keys (if CAPS is on) and for arrows
 int		handle_keypress(int keycode, t_game *game)
 {
 	int	moved;

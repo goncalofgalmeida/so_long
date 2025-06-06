@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/03 23:41:17 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/06 23:01:39 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ typedef enum e_error_codes
 	ERR_MAP_NOT_WIN,
 }	t_error_codes;
 
+typedef enum e_player_dir
+{
+	DIR_UP = 100,
+	DIR_RIGHT,
+	DIR_DOWN,
+	DIR_LEFT,
+}	t_player_dir;
+
 // mlx related
 # define TILE_SIZE 64
 
@@ -45,7 +53,10 @@ typedef enum e_error_codes
 # define WALL_PATH "textures/environment/asteroid-01.xpm"
 # define EXIT_PATH "textures/environment/portal.xpm"
 # define COL_PATH "textures/collectibles/collectible.xpm"
-# define PLAYER_PATH "textures/characters/p-red-up.xpm"
+# define P_UP_PATH "textures/characters/p-red-up.xpm"
+# define P_RIGHT_PATH "textures/characters/p-red-right.xpm"
+# define P_DOWN_PATH "textures/characters/p-red-down.xpm"
+# define P_LEFT_PATH "textures/characters/p-red-left.xpm"
 
 // mlx events and masks
 # define EVENT_KEY_PRESS 2
@@ -66,14 +77,18 @@ typedef struct s_sprites
 	void	*wall;
 	void	*exit;
 	void	*collectible;
-	void	*player;
+	void	*p_up;
+	void	*p_right;
+	void	*p_down;
+	void	*p_left;
 }	t_sprites;
 
 typedef struct s_player
 {
 	int	x_coord;
 	int	y_coord;
-	int	move_count;	
+	int	direction;
+	int	move_count;
 }	t_player;
 
 typedef struct s_map

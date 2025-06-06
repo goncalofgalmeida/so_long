@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:04:30 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/03 17:04:13 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/06 23:14:51 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	init_player_coords(t_player *player)
 {
 	player->x_coord = 0;
 	player->y_coord = 0;
+	player->direction = DIR_RIGHT;
 	player->move_count = 0;
 }
 

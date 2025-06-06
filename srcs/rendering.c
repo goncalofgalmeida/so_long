@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:07:10 by g24force          #+#    #+#             */
-/*   Updated: 2025/06/03 23:42:26 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/06 23:09:59 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ void	load_images(t_game *game)
 	sprites->wall = mlx_xpm_file_to_image(game->mlx.init, WALL_PATH, &width, &height);
 	sprites->exit = mlx_xpm_file_to_image(game->mlx.init, EXIT_PATH, &width, &height);
 	sprites->collectible = mlx_xpm_file_to_image(game->mlx.init, COL_PATH, &width, &height);
-	sprites->player = mlx_xpm_file_to_image(game->mlx.init, PLAYER_PATH, &width, &height);
-	if (!sprites->floor || !sprites->wall || !sprites->exit || !sprites->collectible || !sprites->player)
+	sprites->p_up = mlx_xpm_file_to_image(game->mlx.init, P_UP_PATH, &width, &height);
+	sprites->p_right = mlx_xpm_file_to_image(game->mlx.init, P_RIGHT_PATH, &width, &height);
+	sprites->p_down = mlx_xpm_file_to_image(game->mlx.init, P_DOWN_PATH, &width, &height);
+	sprites->p_left = mlx_xpm_file_to_image(game->mlx.init, P_LEFT_PATH, &width, &height);
+	if (!sprites->floor || !sprites->wall || !sprites->exit || !sprites->collectible || !sprites->p_up) //check other dirs
 	{
 		handle_error_status(193); // ERR_LOADING_IMG
 	}
@@ -44,7 +47,16 @@ void	render_sprite(t_game *game, char cell_value, int x, int y)
 	else if (cell_value == '0')
 		mlx_put_image_to_window(mlx->init, window, sprites.floor, x * TILE_SIZE, y * TILE_SIZE);
 	else if (cell_value == 'P')
-		mlx_put_image_to_window(mlx->init, window, sprites.player, x * TILE_SIZE, y * TILE_SIZE);
+	{
+		if (game->map.player.direction == DIR_UP)
+			mlx_put_image_to_window(mlx->init, window, sprites.p_up, x * TILE_SIZE, y * TILE_SIZE);
+		if (game->map.player.direction == DIR_RIGHT)
+			mlx_put_image_to_window(mlx->init, window, sprites.p_right, x * TILE_SIZE, y * TILE_SIZE);
+		if (game->map.player.direction == DIR_DOWN)
+			mlx_put_image_to_window(mlx->init, window, sprites.p_down, x * TILE_SIZE, y * TILE_SIZE);
+		if (game->map.player.direction == DIR_LEFT)
+			mlx_put_image_to_window(mlx->init, window, sprites.p_left, x * TILE_SIZE, y * TILE_SIZE);
+	}
 	else if (cell_value == 'C')
 		mlx_put_image_to_window(mlx->init, window, sprites.collectible, x * TILE_SIZE, y * TILE_SIZE);
 	else if (cell_value == 'E')

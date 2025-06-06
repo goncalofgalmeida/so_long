@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:45:15 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/30 13:42:57 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/06 23:02:57 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	move_right(t_map *map)
 	map->matrix[player->y_coord][player->x_coord] = '0';
 	player->x_coord += 1;
 	map->matrix[player->y_coord][player->x_coord] = 'P';
+	player->direction = DIR_RIGHT;
 	return (1);
 }
 
@@ -42,6 +43,7 @@ int	move_down(t_map *map)
 	map->matrix[player->y_coord][player->x_coord] = '0';
 	player->y_coord += 1;
 	map->matrix[player->y_coord][player->x_coord] = 'P';
+	player->direction = DIR_DOWN;
 	return (1);
 }
 
@@ -55,6 +57,7 @@ int	move_left(t_map *map)
 	map->matrix[player->y_coord][player->x_coord] = '0';
 	player->x_coord -= 1;
 	map->matrix[player->y_coord][player->x_coord] = 'P';
+	player->direction = DIR_LEFT;
 	return (1);
 }
 
@@ -68,5 +71,6 @@ int	move_up(t_map *map)
 	map->matrix[player->y_coord][player->x_coord] = '0';
 	player->y_coord -= 1;
 	map->matrix[player->y_coord][player->x_coord] = 'P';
+	player->direction = DIR_UP;
 	return (1);
 }
