@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 13:27:10 by g24force          #+#    #+#             */
-/*   Updated: 2025/06/06 22:42:49 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/08 12:25:10 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int		handle_keypress(int keycode, t_game *game)
 
 	moved = 0;
 	if (keycode == KEY_W)
-		moved = move_up(&game->map);
+		moved = move_up(game);
 	else if (keycode == KEY_D)
-		moved = move_right(&game->map);
+		moved = move_right(game);
 	else if (keycode == KEY_S)
-		moved = move_down(&game->map);
+		moved = move_down(game);
 	else if (keycode == KEY_A)
-		moved = move_left(&game->map);
+		moved = move_left(game);
 	else if (keycode == KEY_ESC)
 		moved = handle_close_game(game);
 	if (moved)
@@ -33,6 +33,7 @@ int		handle_keypress(int keycode, t_game *game)
 		game->map.player.move_count++;
 		print_move_count(*game);
 		render_map(game);
+		// TODO make check_win() function ---- prolly needs to be called inside each movement.c function
 	}
 	return (0);
 }

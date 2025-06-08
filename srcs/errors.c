@@ -6,15 +6,17 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:39:41 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/05/28 15:08:06 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/08 18:18:37 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+
+// delete all printf and use ft_putstr_fd
 int	handle_error_status(int status)
 {
-	printf("Error! ");
+	printf("Error\n");
 	if (status == ERR_ARGC)
 		printf("Usage: ./so_long path/to/map.ber\n");
 	else if (status == ERR_INVALID_EXT)
@@ -28,11 +30,11 @@ int	handle_error_status(int status)
 	else if (status == ERR_MISSING_WALL)
 		printf("Map is not surrounded by walls.\n");
 	else if (status == ERR_MULTIPLE_EXITS)
-		printf("Map has multiple exits.\n");
+		printf("The number of exits is not one.\n");
 	else if (status == ERR_MULTIPLE_STARTS)
 		printf("Map has multiple starts.\n");
 	else if (status == ERR_NO_COLLECTIBLES)
-		printf("No collectibles found\n");
+		printf("No collectibles found.\n");
 	else if (status == ERR_MAP_NOT_WIN)
 		printf("Map is not winnable.\n");
 	else

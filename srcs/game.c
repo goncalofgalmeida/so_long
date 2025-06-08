@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:35:51 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/03 18:17:50 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/08 14:17:01 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ void	get_and_set_map(t_map *map, char *file_path)
 	map->matrix = ft_split(file_content, '\n');
 	map->flood = ft_split(file_content, '\n');
 	get_and_set_chars_count(map, file_content);
+}
+
+void	game_over(t_game *game)
+{
+	// free stuff and ensure clean exit
+	(void)game; // delete line
+	ft_putstr_fd("\nGame over! You won!\n", 1);
+	exit(0);
 }
 
 void	start_game(t_map *map, char *file_path)

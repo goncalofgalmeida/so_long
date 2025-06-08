@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/06 23:01:39 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/08 12:13:08 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ void	print_flood(t_map map); // delete
 // game.c
 char	*get_file_content(char *file_path);
 void	get_and_set_map(t_map *map_ptr, char *file_path);
+void	game_over(t_game *game);
 void	start_game(t_map *map, char *file_path);
 
 // init.c
@@ -149,10 +150,10 @@ void	render_map(t_game *game);
 
 // movement.c
 void	print_move_count(t_game game);
-int	move_right(t_map *map);
-int	move_down(t_map *map);
-int	move_left(t_map *map);
-int	move_up(t_map *map);
+int		move_right(t_game *game);
+int		move_down(t_game *game);
+int		move_left(t_game *game);
+int		move_up(t_game *game);
 
 // handling.c
 int		handle_keypress(int keycode, t_game *game);

@@ -6,7 +6,7 @@
 /*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:45:15 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/06 23:02:57 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/08 12:26:35 by g24force         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,58 +19,118 @@ void	print_move_count(t_game game)
 	ft_putchar_fd('\n', 1);
 }
 
-int	move_right(t_map *map)
+int	move_right(t_game *game)
 {
+	char		**matrix;
 	t_player	*player;
 
-	player = &map->player;
-	if (map->matrix[player->y_coord][player->x_coord + 1] == '1')
+	matrix = game->map.matrix;
+	player = &game->map.player;
+	if (matrix[player->y_coord][player->x_coord + 1] == '1')
 		return (0);
-	map->matrix[player->y_coord][player->x_coord] = '0';
+	if (matrix[player->y_coord][player->x_coord + 1] == 'C')
+		game->map.collectibles_count--;
+	if (matrix[player->y_coord][player->x_coord + 1] == 'E')
+	{
+		if (game->map.collectibles_count == 0)
+		{
+			game->map.player.move_count++;
+			print_move_count(*game);
+			game_over(game);
+		}
+		else
+			return (0);
+	}
+	matrix[player->y_coord][player->x_coord] = '0';
 	player->x_coord += 1;
-	map->matrix[player->y_coord][player->x_coord] = 'P';
+	matrix[player->y_coord][player->x_coord] = 'P';
 	player->direction = DIR_RIGHT;
 	return (1);
 }
 
-int	move_down(t_map *map)
+int	move_down(t_game *game)
 {
+	char		**matrix;
 	t_player	*player;
 
-	player = &map->player;
-	if (map->matrix[player->y_coord + 1][player->x_coord] == '1')
+	matrix = game->map.matrix;
+	player = &game->map.player;
+	if (matrix[player->y_coord + 1][player->x_coord] == '1')
 		return (0);
-	map->matrix[player->y_coord][player->x_coord] = '0';
+	if (matrix[player->y_coord + 1][player->x_coord] == 'C')
+		game->map.collectibles_count--;
+	if (matrix[player->y_coord + 1][player->x_coord] == 'E')
+	{
+		if (game->map.collectibles_count == 0)
+		{
+			game->map.player.move_count++;
+			print_move_count(*game);
+			game_over(game);
+		}
+		else
+			return (0);
+	}
+	matrix[player->y_coord][player->x_coord] = '0';
 	player->y_coord += 1;
-	map->matrix[player->y_coord][player->x_coord] = 'P';
+	matrix[player->y_coord][player->x_coord] = 'P';
 	player->direction = DIR_DOWN;
 	return (1);
 }
 
-int	move_left(t_map *map)
+int	move_left(t_game *game)
 {
+	char		**matrix;
 	t_player	*player;
 
-	player = &map->player;
-	if (map->matrix[player->y_coord][player->x_coord - 1] == '1')
+	matrix = game->map.matrix;
+	player = &game->map.player;
+	if (matrix[player->y_coord][player->x_coord - 1] == '1')
 		return (0);
-	map->matrix[player->y_coord][player->x_coord] = '0';
+	if (matrix[player->y_coord][player->x_coord - 1] == 'C')
+		game->map.collectibles_count--;
+	if (matrix[player->y_coord][player->x_coord - 1] == 'E')
+	{
+		if (game->map.collectibles_count == 0)
+		{
+			game->map.player.move_count++;
+			print_move_count(*game);
+			game_over(game);
+		}
+		else
+			return (0);
+	}
+	matrix[player->y_coord][player->x_coord] = '0';
 	player->x_coord -= 1;
-	map->matrix[player->y_coord][player->x_coord] = 'P';
+	matrix[player->y_coord][player->x_coord] = 'P';
 	player->direction = DIR_LEFT;
 	return (1);
 }
 
-int	move_up(t_map *map)
+int	move_up(t_game *game)
 {
+	char		**matrix;
 	t_player	*player;
 
-	player = &map->player;
-	if (map->matrix[player->y_coord - 1][player->x_coord] == '1')
+	matrix = game->map.matrix;
+	player = &game->map.player;
+	if (matrix[player->y_coord - 1][player->x_coord] == '1')
 		return (0);
-	map->matrix[player->y_coord][player->x_coord] = '0';
+	if (matrix[player->y_coord - 1][player->x_coord] == 'C')
+		game->map.collectibles_count--;
+	if (matrix[player->y_coord - 1][player->x_coord] == 'E')
+	{
+		if (game->map.collectibles_count == 0)
+		{
+			game->map.player.move_count++;
+			print_move_count(*game);
+			game_over(game);
+		}
+		else
+			return (0);
+	}
+	matrix[player->y_coord][player->x_coord] = '0';
 	player->y_coord -= 1;
-	map->matrix[player->y_coord][player->x_coord] = 'P';
+	matrix[player->y_coord][player->x_coord] = 'P';
 	player->direction = DIR_UP;
 	return (1);
 }
