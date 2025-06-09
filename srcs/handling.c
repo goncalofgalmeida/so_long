@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   handling.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/30 13:27:10 by g24force          #+#    #+#             */
-/*   Updated: 2025/06/08 12:25:10 by g24force         ###   ########.fr       */
+/*   Created: 2025/05/30 13:27:10 by gjose-fr          #+#    #+#             */
+/*   Updated: 2025/06/09 17:36:12 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
 // allow movement for upper keys (if CAPS is on) and for arrows
-int		handle_keypress(int keycode, t_game *game)
+int	handle_keypress(int keycode, t_game *game)
 {
 	int	moved;
 
@@ -33,15 +33,13 @@ int		handle_keypress(int keycode, t_game *game)
 		game->map.player.move_count++;
 		print_move_count(*game);
 		render_map(game);
-		// TODO make check_win() function ---- prolly needs to be called inside each movement.c function
+		// TODO make check_win() function?
 	}
 	return (0);
 }
 
-int		handle_close_game(t_game *game)
+int	handle_close_game(t_game *game)
 {
-	// free stuff
-	(void)game; // delete line
-	exit(0);
+	exit_game(game, 0, NULL); // qual devia ser o status aqui?
 	return (0);
 }

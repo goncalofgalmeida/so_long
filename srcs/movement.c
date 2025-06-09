@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:45:15 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/08 12:26:35 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/09 17:56:34 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	move_right(t_game *game)
 		{
 			game->map.player.move_count++;
 			print_move_count(*game);
-			game_over(game);
+			exit_game(game, 0, NULL);
 		}
 		else
 			return (0);
@@ -65,7 +65,7 @@ int	move_down(t_game *game)
 		{
 			game->map.player.move_count++;
 			print_move_count(*game);
-			game_over(game);
+			exit_game(game, 0, NULL);
 		}
 		else
 			return (0);
@@ -94,7 +94,7 @@ int	move_left(t_game *game)
 		{
 			game->map.player.move_count++;
 			print_move_count(*game);
-			game_over(game);
+			exit_game(game, 0, NULL);
 		}
 		else
 			return (0);
@@ -123,7 +123,7 @@ int	move_up(t_game *game)
 		{
 			game->map.player.move_count++;
 			print_move_count(*game);
-			game_over(game);
+			exit_game(game, 0, NULL);
 		}
 		else
 			return (0);

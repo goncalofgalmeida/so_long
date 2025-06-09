@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:35:51 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/08 14:17:01 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:24:02 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,37 @@ char	*get_file_content(char *file_path)
 	return (file_content);
 }
 
-void	get_and_set_map(t_map *map, char *file_path)
+void	get_and_set_map(t_game *game, char *file_path)
 {
+	t_map	*map;
 	char	*file_content;
 
+	map = &(game->map);
 	file_content = get_file_content(file_path);
 	if (!file_content)
-		handle_error_status(67); // error reading file, change code later
+	{
+		free(file_content);
+		exit_game(game, ERR_OPENING_FILE, "Error opening file.");
+	}
 	if (!map_content_is_valid(file_content))
-		handle_error_status(ERR_INVALID_CHAR);
+	{
+		free(file_content);
+		exit_game(game, ERR_INVALID_CHAR, "Invalid character found.");
+	}
 	map->height = get_map_height(file_content);
 	map->width = get_map_width(file_content);
 	map->matrix = ft_split(file_content, '\n');
 	map->flood = ft_split(file_content, '\n');
 	get_and_set_chars_count(map, file_content);
+	free(file_content);
 }
 
-void	game_over(t_game *game)
+void	start_game(t_game *game, char *file_path)
 {
-	// free stuff and ensure clean exit
-	(void)game; // delete line
-	ft_putstr_fd("\nGame over! You won!\n", 1);
-	exit(0);
-}
+	t_map	*map;
 
-void	start_game(t_map *map, char *file_path)
-{
-	get_and_set_map(map, file_path);
+	map = &(game->map);
+	get_and_set_map(game, file_path);
 	get_and_set_player_coords(map);
-	parse_map(map);
+	parse_map(game);
 }

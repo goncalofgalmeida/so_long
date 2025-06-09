@@ -3,42 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:39:41 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/08 18:18:37 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/09 16:53:27 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-
-// delete all printf and use ft_putstr_fd
-int	handle_error_status(int status)
+void	exit_game(t_game *game, int status, char *msg)
 {
-	printf("Error\n");
-	if (status == ERR_ARGC)
-		printf("Usage: ./so_long path/to/map.ber\n");
-	else if (status == ERR_INVALID_EXT)
-		printf("Invalid file extension.\n");
-	else if (status == ERR_OPENING_FILE)
-		printf("Error opening file.\n");
-	else if (status == ERR_INVALID_CHAR)
-		printf("Invalid character found.\n");
-	else if (status == ERR_INVALID_MAP_PROPORTIONS)
-		printf("Map is not a rectangle.\n");
-	else if (status == ERR_MISSING_WALL)
-		printf("Map is not surrounded by walls.\n");
-	else if (status == ERR_MULTIPLE_EXITS)
-		printf("The number of exits is not one.\n");
-	else if (status == ERR_MULTIPLE_STARTS)
-		printf("Map has multiple starts.\n");
-	else if (status == ERR_NO_COLLECTIBLES)
-		printf("No collectibles found.\n");
-	else if (status == ERR_MAP_NOT_WIN)
-		printf("Map is not winnable.\n");
-	else
-		printf("Undefined error, must look into it.\n");
-	//free_all(); // criar função para dar free a tudo
-	exit (status);
+	// nao estou satisfeito com esta logica, acho que pode dar erros se alguma coisa falhar
+	if (msg)
+	{
+		ft_putstr_fd("Error\n", 1);
+		ft_putendl_fd(msg, 1);
+	}
+	if (status == 0)
+		ft_putendl_fd("\nGame over! You won!", 1);
+	free_all(game);
+	exit(status);
 }

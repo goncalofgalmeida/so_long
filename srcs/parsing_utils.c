@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:27:49 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/03 18:19:14 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:27:56 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+int	file_ext_is_valid(char *file_name)
+{
+	int	len;
+
+	len = ft_strlen(file_name);
+	if (len <= 4)
+		return (0);
+	if (file_name[len - 1] != 'r')
+		return (0);
+	if (file_name[len - 2] != 'e')
+		return (0);
+	if (file_name[len - 3] != 'b')
+		return (0);
+	if (file_name[len - 4] != '.')
+		return (0);
+	if (file_name[len - 5] && file_name[len - 5] == '/')
+		return (0);
+	return (1);
+}
 
 // Counts number of \n and adds 1 to count the last line
 int	get_map_height(char *file_content)
@@ -53,7 +73,6 @@ void	get_and_set_player_coords(t_map *map)
 			{
 				map->player.y_coord = y;
 				map->player.x_coord = x;
-				printf("Player coordinates: (%d, %d)\n", y, x); // delete
 			}
 			x++;
 		}
@@ -83,87 +102,4 @@ void	get_and_set_chars_count(t_map *map, char *file_content)
 	map->collectibles_count = collectibles_count;
 	map->exit_count = exit_count;
 	map->player_count = player_count;
-}
-
-int	is_rectangular(t_map *map) {
-	int	first_line_width;
-	int	current_line_width;
-	int	i;
-
-	first_line_width = map->width;
-	i = 1;
-	while (map->matrix[i])
-	{
-		current_line_width = ft_strlen(map->matrix[i]);
-		if (current_line_width != first_line_width)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	is_surrounded_by_walls(t_map *map)
-{
-	int		y;
-	int		x;
-
-	x = 0;
-	while (map->matrix[0][x])
-	{
-		if (map->matrix[0][x] != '1' || map->matrix[map->height - 1][x] != '1')
-			return (0);
-		x++;
-	}
-	y = 0;
-	while (y < map->height) //map->matrix[x][0]
-	{
-		if (map->matrix[y][0] != '1' || map->matrix[y][map->width - 1] != '1')
-			return (0);
-		y++;
-	}
-	return (1);
-}
-
-// delete
-void	print_map(t_map map)
-{
-	int		y;
-	int		x;
-
-	printf("Map:\n");
-	y = 0;
-	while (y < map.height)
-	{
-		x = 0;
-		while (x < map.width)
-		{
-			printf("%c", map.matrix[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
-	printf("\n");
-}
-
-// delete
-void	print_flood(t_map map)
-{
-	int		y;
-	int		x;
-
-	printf("Flooded map:\n");
-	y = 0;
-	while (y < map.height)
-	{
-		x = 0;
-		while (x < map.width)
-		{
-			printf("%c", map.flood[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
-	printf("\n");
 }

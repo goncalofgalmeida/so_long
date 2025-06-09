@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:32:28 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/03 17:49:56 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:02:56 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,15 @@ int		main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		return (handle_error_status(ERR_ARGC));
+		exit_game(NULL, ERR_ARGC, "Usage: ./so_long path/to/map.ber");
 	if (!file_ext_is_valid(argv[1]))
-		return (handle_error_status(ERR_INVALID_EXT));
+		exit_game(NULL, ERR_INVALID_EXT, "Invalid file extension.");
+	init_structs(&game);
 	game.mlx.init = mlx_init();
 	if (!game.mlx.init)
-		return (1);
-	init_maps(&game.map);
-	start_game(&game.map, argv[1]);
+		exit_game(NULL, ERR_INIT_MLX, "Unable to initiate MLX.");
+	//init_maps(&game.map);
+	start_game(&game, argv[1]);
 	game.mlx.window = mlx_new_window(game.mlx.init,
 		game.map.width * TILE_SIZE,
 		game.map.height * TILE_SIZE,

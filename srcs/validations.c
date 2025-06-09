@@ -3,31 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: g24force <g24force@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:38:25 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/08 17:34:20 by g24force         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:36:21 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "../so_long.h"
 
-int	file_ext_is_valid(char *file_name)
+int	is_rectangular(t_map *map)
 {
-	int	len;
+	int	first_line_width;
+	int	current_line_width;
+	int	i;
 
-	len = ft_strlen(file_name);
-	if (len <= 4)
-		return (0);
-	if (file_name[len - 1] != 'r')
-		return (0);
-	if (file_name[len - 2] != 'e')
-		return (0);
-	if (file_name[len - 3] != 'b')
-		return (0);
-	if (file_name[len - 4] != '.')
-		return (0);
+	first_line_width = map->width;
+	i = 1;
+	while (map->matrix[i])
+	{
+		current_line_width = ft_strlen(map->matrix[i]);
+		if (current_line_width != first_line_width)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	is_surrounded_by_walls(t_map *map)
+{
+	int		y;
+	int		x;
+
+	x = 0;
+	while (map->matrix[0][x])
+	{
+		if (map->matrix[0][x] != '1' || map->matrix[map->height - 1][x] != '1')
+			return (0);
+		x++;
+	}
+	y = 0;
+	while (y < map->height) //map->matrix[x][0]
+	{
+		if (map->matrix[y][0] != '1' || map->matrix[y][map->width - 1] != '1')
+			return (0);
+		y++;
+	}
 	return (1);
 }
 
@@ -45,70 +66,32 @@ int	map_content_is_valid(char *file_content)
 	return (1);
 }
 
-void check_chars_count(t_map *map)
+void	check_chars_count(t_game *game)
 {
+	t_map	*map;
+
+	map = &(game->map);
 	if (map->player_count != 1)
-		handle_error_status(ERR_MULTIPLE_STARTS);
+		exit_game(game, ERR_MULTIPLE_STARTS, "Map has multiple starts.");
 	if (map->exit_count != 1)
-		handle_error_status(ERR_MULTIPLE_EXITS);
-	if (map->collectibles_count < 1)
-		handle_error_status(ERR_NO_COLLECTIBLES);
-}
-
-void	flood_fill(char **flood, int y, int x)
-{
-	if (y < 0 || x < 0 || flood[y][x] == '1' || flood[y][x] == 'F'
-		|| flood[y][x] == 'e')
-		return ;
-	if (flood[y][x] == 'E')
-	{
-		flood[y][x] = 'e';
-		return ;
-	}
-	flood[y][x] = 'F';
-	flood_fill(flood, y + 1, x);
-	flood_fill(flood, y - 1, x);
-	flood_fill(flood, y, x + 1);
-	flood_fill(flood, y, x - 1);
-}
-
-int	is_winnable(char **flood)
-{
-	int	y;
-	int	x;
-
-
-	y = 0;
-	while (flood[y])
-	{
-		x = 0;
-		while (flood[y][x])
-		{
-			if (flood[y][x] == 'C' || flood[y][x] == 'E')
-				return (0);
-			x++;
-		}
-		y++;
-	}
-	return (1);
-}
-
-//acho que posso passar aqui o mapa direto, não pointer
-void	parse_map(t_map *map)
-{
-	if (!is_rectangular(map))
-		handle_error_status(ERR_INVALID_MAP_PROPORTIONS);
-	if (!is_surrounded_by_walls(map))
-		handle_error_status(ERR_MISSING_WALL);
-	if (map->player_count != 1)
-		handle_error_status(ERR_MULTIPLE_STARTS);
-	if (map->exit_count != 1)
-		handle_error_status(ERR_MULTIPLE_EXITS);
+		exit_game(game, ERR_MULTIPLE_EXITS, "The number of exits is not one.");
 	if (map->collectibles_count <= 0)
-		handle_error_status(ERR_NO_COLLECTIBLES);
+		exit_game(game, ERR_NO_COLLECTIBLES, "No collectibles found.");
+}
+
+void	parse_map(t_game *game)
+{
+	t_map	*map;
+
+	map = &(game->map);
+	if (!is_rectangular(map))
+		exit_game(game, ERR_INVALID_MAP_PROPORTIONS, "Map is not a rectangle.");
+	if (!is_surrounded_by_walls(map))
+		exit_game(game, ERR_MISSING_WALL, "Map is not surrounded by walls.");
+	check_chars_count(game);
 	flood_fill(map->flood, map->player.y_coord, map->player.x_coord);
 	print_map(*map); // delete
 	print_flood(*map); // delete
 	if (!is_winnable(map->flood))
-		handle_error_status(ERR_MAP_NOT_WIN);
+		exit_game(game, ERR_MAP_NOT_WIN, "Map is not winnable.");
 }
