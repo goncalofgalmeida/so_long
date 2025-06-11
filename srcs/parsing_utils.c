@@ -6,7 +6,7 @@
 /*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:27:49 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/09 18:27:56 by gjose-fr         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:17:15 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	get_map_height(char *file_content)
 	height = 0;
 	while (*file_content)
 	{
-		if (*file_content == '\n')
+		if (*file_content == '\n' && *(file_content + 1) != '\n')
 			height++;
 		file_content++;
 	}

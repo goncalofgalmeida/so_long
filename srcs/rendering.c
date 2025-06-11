@@ -6,7 +6,7 @@
 /*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:07:10 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/09 15:59:12 by gjose-fr         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:26:44 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	load_images(t_game *game)
 	sprites->p_left = mlx_xpm_file_to_image(mlx->init, P_LEFT_PATH, &w, &h);
 	if (!sprites->floor || !sprites->wall || !sprites->exit
 		|| !sprites->col || !sprites->p_up || !sprites->p_right
-		|| !sprites->p_down || !sprites->p_left) //check other dirs
+		|| !sprites->p_down || !sprites->p_left)
 	{
 		exit_game(game, ERR_LOADING_IMGS, "Unable to load all images.");
 	}

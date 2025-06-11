@@ -6,7 +6,7 @@
 /*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:39:41 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/09 16:53:27 by gjose-fr         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:50:38 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	exit_game(t_game *game, int status, char *msg)
 {
-	// nao estou satisfeito com esta logica, acho que pode dar erros se alguma coisa falhar
 	if (msg)
 	{
 		ft_putstr_fd("Error\n", 1);

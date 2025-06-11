@@ -6,7 +6,7 @@
 /*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:35:51 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/09 18:24:02 by gjose-fr         ###   ########.fr       */
+/*   Updated: 2025/06/11 14:25:40 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	get_and_set_map(t_game *game, char *file_path)
 	if (!file_content)
 	{
 		free(file_content);
-		exit_game(game, ERR_OPENING_FILE, "Error opening file.");
+		exit_game(game, ERR_OPENING_FILE, "Error opening file or empty file.");
 	}
 	if (!map_content_is_valid(file_content))
 	{
 		free(file_content);
-		exit_game(game, ERR_INVALID_CHAR, "Invalid character found.");
+		exit_game(game, ERR_INV_CHARS, "Invalid character or sequence found.");
 	}
 	map->height = get_map_height(file_content);
 	map->width = get_map_width(file_content);

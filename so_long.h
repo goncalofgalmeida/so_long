@@ -6,15 +6,13 @@
 /*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:41:47 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/09 17:54:26 by gjose-fr         ###   ########.fr       */
+/*   Updated: 2025/06/11 14:02:17 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-// confirmar se todos estes são necessários
-# include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
 # include <stdint.h>
@@ -29,7 +27,7 @@ typedef enum e_error_codes
 	ERR_INVALID_EXT,
 	ERR_INIT_MLX,
 	ERR_OPENING_FILE,
-	ERR_INVALID_CHAR,
+	ERR_INV_CHARS,
 	ERR_INVALID_MAP_PROPORTIONS,
 	ERR_MISSING_WALL,
 	ERR_MULTIPLE_EXITS,
@@ -164,16 +162,5 @@ void	render_map(t_game *game);
 int		file_ext_is_valid(char *file_name);
 int		map_content_is_valid(char *file_content);
 void	parse_map(t_game *game);
-
-
-
-
-
-
-
-// del.c DELETE NAO TE ESQUECAS CARALHO
-
-void	print_map(t_map map); // delete
-void	print_flood(t_map map); // delete
 
 #endif

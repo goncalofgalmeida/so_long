@@ -15,8 +15,7 @@ SRC = ./so_long.c \
 	$(SRCS_DIR)/movement.c \
 	$(SRCS_DIR)/parsing_utils.c \
 	$(SRCS_DIR)/rendering.c \
-	$(SRCS_DIR)/validations.c \
-	$(SRCS_DIR)/del.c # DELETE NAO TE ESQUECAS CARALHO
+	$(SRCS_DIR)/validations.c
 
 OBJS = $(SRC:.c=.o)
 
@@ -27,9 +26,6 @@ RM = rm -rf
 
 INCLUDES = -I/usr/include -Imlx
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
-
-# Confirmar importância desta rule: faz com que qualquer verificação no so_long.h se verifique após a compilação
-## %.o: %.c [...]
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@

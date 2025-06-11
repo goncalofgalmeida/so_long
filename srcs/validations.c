@@ -6,7 +6,7 @@
 /*   By: gjose-fr <gjose-fr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:38:25 by gjose-fr          #+#    #+#             */
-/*   Updated: 2025/06/09 18:36:21 by gjose-fr         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:26:18 by gjose-fr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	is_surrounded_by_walls(t_map *map)
 		x++;
 	}
 	y = 0;
-	while (y < map->height) //map->matrix[x][0]
+	while (y < map->height)
 	{
 		if (map->matrix[y][0] != '1' || map->matrix[y][map->width - 1] != '1')
 			return (0);
@@ -55,7 +55,11 @@ int	is_surrounded_by_walls(t_map *map)
 int	map_content_is_valid(char *file_content)
 {
 	char	*valid_chars;
+	int		len;
 
+	len = ft_strlen(file_content);
+	if (len >= 1 && (file_content[0] == '\n' || file_content[len - 1] == '\n'))
+		return (0);
 	valid_chars = "10PCE\n";
 	while (*file_content)
 	{
@@ -90,8 +94,6 @@ void	parse_map(t_game *game)
 		exit_game(game, ERR_MISSING_WALL, "Map is not surrounded by walls.");
 	check_chars_count(game);
 	flood_fill(map->flood, map->player.y_coord, map->player.x_coord);
-	print_map(*map); // delete
-	print_flood(*map); // delete
 	if (!is_winnable(map->flood))
 		exit_game(game, ERR_MAP_NOT_WIN, "Map is not winnable.");
 }
